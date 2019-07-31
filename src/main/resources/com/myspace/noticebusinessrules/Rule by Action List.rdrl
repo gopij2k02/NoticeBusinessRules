@@ -1,0 +1,13 @@
+package com.myspace.noticebusinessrules;
+
+import java.lang.Number;
+
+rule "Rule by Action List"
+	dialect "mvel"
+	when
+		$ppd : PPD( $al : actionList contains "GOPI" )
+	then
+		modify( $ppd ) {
+				setSpecialCategory( "test" )
+		}
+end
