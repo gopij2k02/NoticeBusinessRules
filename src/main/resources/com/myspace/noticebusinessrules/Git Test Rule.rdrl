@@ -7,5 +7,5 @@ rule "Git Test Rule"
 	when
 		PPD( appID == 1 )
 	then
-		1=1
+		insert( new Number() );
 end
