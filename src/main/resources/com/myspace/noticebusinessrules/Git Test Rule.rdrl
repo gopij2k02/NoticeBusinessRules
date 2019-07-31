@@ -5,5 +5,7 @@ import java.lang.Number;
 rule "Git Test Rule"
 	dialect "mvel"
 	when
+		PPD( appID == 1 )
 	then
+		1=1
 end
