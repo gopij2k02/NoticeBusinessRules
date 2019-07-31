@@ -1,0 +1,17 @@
+package com.myspace.noticebusinessrules;
+
+import java.lang.Number;
+
+rule "Approval Action BA129"
+	dialect "mvel"
+	when
+		PPD( generalTypeID == 1 )
+		$action : Action( actionCode in ( "BA129", "NAA78", "ICAA2", "NAA82" ) )
+		PPD( dispositionStatusCode == "A" , coverageTypeCode != "Q" )
+		( PPDMessage( eventType in ( "NEW", "RETROACTIVE" ) ) or PPDMessage( eventType == "READD" , currentKeyCode != "" , priorKeyCode == "" ) )
+		PPDMessage( currentConditionalInd == false )
+	then
+		modify( $action ) {
+				setIncludeAction( true )
+		}
+end
