@@ -1,0 +1,16 @@
+package com.myspace.noticebusinessrules;
+
+import java.lang.Number;
+
+rule "Approval Action CPAD"
+	dialect "mvel"
+	when
+		PPD( generalTypeID == 1 )
+		$action : Action( actionCode in ( "CPAJ", "CPAD" ) )
+		PPD( dispositionStatusCode == "A" , coverageTypeCode != "Q" )
+		( PPDMessage( eventType in ( "NEW", "RETROACTIVE" ) ) or PPDMessage( eventType == "READD" , currentKeyCode != "" , priorKeyCode == "" ) )
+	then
+		modify( $action ) {
+				setIncludeAction( true )
+		}
+end
