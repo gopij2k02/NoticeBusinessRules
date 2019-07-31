@@ -1,0 +1,9 @@
+package com.myspace.noticebusinessrules;
+
+import java.lang.Number;
+
+rule "Git Test Rule"
+	dialect "mvel"
+	when
+	then
+end
